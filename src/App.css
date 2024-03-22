@@ -1,0 +1,52 @@
+/* button {
+    display: flex;
+    gap: 5px;
+    width: 50px;
+    height: 50px;
+    margin: 4px;
+    boder: 2px solid green;
+    cursor: pointer;
+} */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#drum-machine {
+  display: flex;
+  align-items: center;
+  margin-top: 20vh;
+  flex-direction: column;
+}
+
+#drumpad_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 20px;
+}
+
+.drum-pad {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.switch {
+  width: 30px;
+  height: 20px;
+  border-radius: 50px;
+  margin-top: 20px;
+  outline: 2px solid black;
+}
+#switch_float {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  border: 2px solid black;
+  vertical-align: middle;
+  background-color: blue;
+}

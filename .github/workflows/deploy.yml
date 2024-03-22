@@ -49,11 +49,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-  1 change: 1 addition & 0 deletions1  
-vite.config.ts
-@@ -4,4 +4,5 @@ import react from '@vitejs/plugin-react'
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: "/vite-deploy/"
-})

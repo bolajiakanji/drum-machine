@@ -41,8 +41,9 @@
   border-radius: 50px;
   margin-top: 20px;
   outline: 2px solid black;
+  padding: 0.3px;
 }
-#switch_float {
+.switch_float {
   width: 20px;
   height: 20px;
   border-radius: 50px;

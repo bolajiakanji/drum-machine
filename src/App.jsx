@@ -121,7 +121,8 @@ function App() {
 
   useEffect(() => {
     document.addEventListener("keydown", listener);
-  }, [on]);
+  return () => {document.removeEventListener("keydown", listener)}
+  },[on, soundVolume]);
   // const show = function (e) {
   //   console.log(e.key)
   // }
@@ -141,22 +142,24 @@ function App() {
       let range_volume = e.target.value;
       setSoundVolume(e.target.value);
       console.log(soundVolume);
+      setSound(`Volume : ${Math.round(e.target.value *100)}%`)
       // let audioElements = document.getElementsByClassName('clip');
       // for (let index=0; index<audioElements.length; index++) {
-      //   audioElements[index].volume=e.target.value
+      //   audioElements[index].volume=e.target.value}
       setTimeout(() => {
-        setSound(`Volume : ${e.target.value *100}%`)
-      }, 200);
+        setSound(drumSoundType === drumpads ? "kit2" : "kit1")
+      }, 700);
     }
   };
   const listener = function (e) {
     if (on) {
-      console.log(e.key);
+    
       let keyp = e.key;
 
       playsound(keyp.toUpperCase());
-      console.log("remove");
+    return  console.log("remove");
     }
+    return console.log('normal')
   };
   function soundtype() {
     if (on) {
@@ -180,7 +183,7 @@ function App() {
       const audio = document.getElementById(selector);
 
       if (audio) {
-        console.log(audio);
+        console.log(on);
         let id_sound = audio.parentNode.id;
         setSound(id_sound);
         audio.volume = soundVolume
@@ -188,6 +191,7 @@ function App() {
         audio.play();
       }
     }
+    console.log(on)
   }
   const handleOnclick = function () {
     let ft = document.getElementsByClassName("switch_float");

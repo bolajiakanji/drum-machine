@@ -121,6 +121,7 @@ function App() {
 
   useEffect(() => {
     document.addEventListener("keydown", listener);
+    document.getElementById("drum-machine").focus()
   return () => {document.removeEventListener("keydown", listener)}
   },[on, soundVolume]);
   // const show = function (e) {
@@ -185,7 +186,10 @@ function App() {
       if (audio) {
         console.log(on);
         let id_sound = audio.parentNode.id;
-        setSound(id_sound);
+   setSound(id_sound);     
+        setTimeout(() => {
+          setSound(drumSoundType === drumpads ? "kit2" : "kit1"); 
+        },2000);
         audio.volume = soundVolume
         console.log(audio.volume)
         audio.play();

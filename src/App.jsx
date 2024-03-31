@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-const drumpads = [
+
+const drumpadsOne = [
   {
     keyCode: 81,
     keyTrigger: "Q",
@@ -56,7 +57,7 @@ const drumpads = [
     url: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
   },
 ];
-const bankTwo = [
+const drumpadsTwo = [
   {
     keyCode: 81,
     keyTrigger: "Q",
@@ -114,114 +115,121 @@ const bankTwo = [
 ];
 
 function App() {
-  const [sound, setSound] = useState("on smooth kit");
-  const [on, setOn] = useState(true);
+  const [display, setDisplay] = useState("ON HEATER KIT");
+  const [powerOn, setPowerOn] = useState(true);
   const [soundVolume, setSoundVolume] = useState(0.6);
-  const [drumSoundType, setDrumSoundType] = useState(drumpads);
+  const [soundCategory, setSoundCategory] = useState(drumpadsOne);
 
   useEffect(() => {
-    document.addEventListener("keydown", listener);
-    document.getElementById("drum-machine").focus()
-  return () => {document.removeEventListener("keydown", listener)}
-  },[on, soundVolume]);
-  // const show = function (e) {
-  //   console.log(e.key)
-  // }
+    document.addEventListener("keydown", keyPadListener);
 
-  // return (
-  //   <>
-  //     <div id="container" onKeyDown={show}>
-  //       <button id="btn">G</button>
-  //       <button id="btn">N</button>
-  //       <button id="btn"> M</button>
-  //       <p>whereare you going </p>
-  //     </div>
-  //   </>
-  // );
+    return () => {
+      document.removeEventListener("keydown", keyPadListener);
+    };
+  }, [powerOn, soundVolume]);
+
   const handleOnchange = function (e) {
-    if (on) {
-      let range_volume = e.target.value;
-      setSoundVolume(e.target.value);
-      console.log(soundVolume);
-      setSound(`Volume : ${Math.round(e.target.value *100)}%`)
-      // let audioElements = document.getElementsByClassName('clip');
-      // for (let index=0; index<audioElements.length; index++) {
-      //   audioElements[index].volume=e.target.value}
+    if (powerOn) {
+      let rangeValue = e.target.value;
+      setSoundVolume(rangeValue);
+      setDisplay(`${Math.round(e.target.value * 100)}% VOLUME`);
       setTimeout(() => {
-        setSound(drumSoundType === drumpads ? "kit2" : "kit1")
-      }, 700);
+        setDisplay(
+          soundCategory === drumpadsOne ? "ON HEATER KIT" : "ON SMOOTH KIT"
+        );
+      }, 800);
     }
   };
-  const listener = function (e) {
-    if (on) {
-    
-      let keyp = e.key;
 
-      playsound(keyp.toUpperCase());
-    return  console.log("remove");
+  const keyPadListener = function (e) {
+    if (powerOn) {
+      let keyValue = e.key;
+      playSound(keyValue.toUpperCase());
     }
-    return console.log('normal')
   };
-  function soundtype() {
-    if (on) {
-      let ft = document.getElementsByClassName("switch_float");
 
-      if (drumSoundType === drumpads) {
-        setSound("kit1");
-        setDrumSoundType(bankTwo);
+  function handleKitClick() {
+    if (powerOn) {
+      let switchButtontwo = document.getElementsByClassName("switchButton");
+      if (soundCategory === drumpadsOne) {
+        setDisplay("ON SMOOTH KIT");
+        setSoundCategory(drumpadsTwo);
       } else {
-        setSound("kit2");
-        setDrumSoundType(drumpads);
+        setDisplay("ON HEATER KIT");
+        setSoundCategory(drumpadsOne);
       }
-      return drumSoundType === drumpads
-        ? (ft[1].style.float = "right")
-        : (ft[1].style.float = "left");
+      switchButtontwo[1].style.float =
+        soundCategory === drumpadsOne ? "left" : "right";
+        switchButtontwo[1].style.backgroundColor =
+        soundCategory === drumpadsOne ? " #ff3300" : "#cc9900";
     }
   }
 
-  function playsound(selector) {
-    if (on) {
+  function playSound(selector) {
+    if (powerOn) {
       const audio = document.getElementById(selector);
-
       if (audio) {
-        console.log(on);
-        let id_sound = audio.parentNode.id;
-   setSound(id_sound);     
+        let parentElement = audio.parentNode.id;
+        setDisplay(parentElement);
         setTimeout(() => {
-          setSound(drumSoundType === drumpads ? "kit2" : "kit1"); 
-        },2000);
-        audio.volume = soundVolume
-        console.log(audio.volume)
+          setDisplay(
+            soundCategory === drumpadsOne ? "ON HEATER KIT" : "ON SMOOTH KIT"
+          );
+        }, 600);
+        audio.volume = soundVolume;
         audio.play();
       }
     }
-    console.log(on)
   }
   const handleOnclick = function () {
-    let ft = document.getElementsByClassName("switch_float");
-
-    if (!on) {
-      setOn(true);
-      setSound(drumSoundType === drumpads ? "kit2" : "kit1");
+    let switchButtonOne = document.getElementsByClassName("switchButton");
+    if (!powerOn) {
+      setPowerOn(true);
+      setDisplay(
+        soundCategory === drumpadsOne ? "ON HEATER KIT" : "ON SMOOTH KIT"
+      )
+      switchButtonOne[0].style.float = "right";
+       switchButtonOne[0].style.backgroundColor = "#cc9900";;
     } else {
-      setOn(false);
-      setSound("");
-    }
-    on ? (ft[0].style.float = "right") : (ft[0].style.float = "left");
+      setPowerOn(false);
+      setDisplay("");
+    
+    
+       switchButtonOne[0].style.float = "left"
+       switchButtonOne[0].style.backgroundColor = " #a6a6a6"
+      }
+       
   };
 
   return (
     <div id="drum-machine">
-      <div>comeout</div>
-      <div id="display">{sound}</div>
+      <div>
+      <DrumPadKeys soundCategoryArray={soundCategory} playSound={playSound} />
+     </div>
+     <div>      
+      <Power onOn={handleOnclick} />
+      <div id="display">{display}</div>
+      <SoundBotton onKitClick={handleKitClick} />
+      <Slider onVolumeChange={handleOnchange} volumeValue={soundVolume} />
+    </div>
+    </div>
+
+  );
+}
+
+export default App;
+
+function DrumPadKeys({ soundCategoryArray, playSound }) {
+  return (
+    <>
       <div id="drumpad_container">
-        {drumSoundType.map((drumpad) => (
+        {soundCategoryArray.map((drumpad) => (
           <div
             key={drumpad.id}
             className="drum-pad"
             id={drumpad.id}
             onClick={(e) => {
-              playsound(drumpad.keyTrigger);
+              playSound(drumpad.keyTrigger);
             }}
           >
             {drumpad.keyTrigger}
@@ -233,44 +241,24 @@ function App() {
           </div>
         ))}
       </div>
-      <Power onOn={handleOnclick} />
-      <SoundBotton onSoundType={soundtype} />
-      <Slider onVolumeChange={handleOnchange} volumeValue={soundVolume} />
-    </div>
+    </>
   );
 }
-
-export default App;
-
-//  drp.map((drhg,i,arr) => {
-//  return (
-
-//                 <div
-//                   key={arr[i].id}
-//                   className="drum-pad"
-//                   id={arr[i].id}
-//                   onClick={(e) => {
-//                     playsound(arr[i].keyTrigger);
-//                   }}
-//                 >
-//                   <p>{arr[i].keyTrigger}</p>
-//                   <audio
-//                     src={arr[i].u
 
 function Power({ onOn }) {
   return (
     <>
       <div className="switch" onClick={onOn}>
-        <div className="switch_float"></div>
+        <div className="switchButton"></div>
       </div>
     </>
   );
 }
-function SoundBotton({ onSoundType }) {
+function SoundBotton({ onKitClick }) {
   return (
     <>
-      <div className="switch" onClick={onSoundType}>
-        <div className="switch_float"></div>
+      <div className="switch" onClick={onKitClick}>
+        <div className="switchButton"></div>
       </div>
     </>
   );

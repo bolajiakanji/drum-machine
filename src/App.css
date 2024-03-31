@@ -13,43 +13,84 @@
   box-sizing: border-box;
   user-select: none;
 }
+body {
+  font-family: sans-serif;
+}
 
 #drum-machine {
   display: flex;
-  align-items: center;
-  margin-top: 20vh;
-  flex-direction: column;
+  alig-items: center;
+  justfy-content: center;
+
+  gap: 25px;
+  background-color: #666666;
+  margin-left: 2px;
+  margin-right: 2px;
+
+  margin: 18vh auto;
+  padding: 10px;
+
+  max-width: 100%;
+  width: 220px;
+  border: 2px solid #cc9900;
 }
 
 #drumpad_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 20px;
-  border: 0.1px solid black;
+  border: ;
+  gap: 5px;
+  background-color: ;
 }
 
 .drum-pad {
-  width: 50px;
-  height: 50px;
-  border: 0.1px solid black;
-  
+  width: 25px;
+  height: 25px;
+  border: ;
+  background-color: #cc9900;
+  color: #ffffff;
+  box-shadow: 1px 1px 2px #ffeb99;
+  font-size: 7px;
+  font-weight:bold ;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+#display {
+  height: 25px;
+  width: 70px;
+  background-color: white;
+  margin-top: 5px;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:    #4d4d4d
+  ;
+
+  
+  font-weight: bold;
 }
 .switch {
-  width: 30px;
-  height: 20px;
-  border-radius: 50px;
+  width: 18px;
+  height: 10px;
+  border-radius: 20px;
   margin-top: 20px;
-  outline: 2px solid black;
-  padding: 0.3px;
+  border: 1px solid #d9d9d9;
+  padding: 1px;
+  background-color: #d9d9d9;
+  cursor: pointer;
 }
-.switch_float {
-  width: 20px;
-  height: 20px;
-  border-radius: 50px;
-  border: 2px solid black;
-  vertical-align: middle;
-  background-color: blue;
+.switchButton {
+  height: 100%;
+  width: 60%;
+  border-radius: 50%;
+  borer: 2px solid black;
+
+  background-color: #cc9900;
+  float: right;
 }

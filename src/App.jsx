@@ -134,10 +134,8 @@ function App() {
       setSoundVolume(rangeValue);
       setDisplay(`${Math.round(e.target.value * 100)}% VOLUME`);
       setTimeout(() => {
-        setDisplay(
-          soundCategory === drumpadsOne ? "ON HEATER KIT" : "ON SMOOTH KIT"
-        );
-      }, 800);
+        setDisplay("");
+      }, 500);
     }
   };
 
@@ -160,7 +158,7 @@ function App() {
       }
       switchButtontwo[1].style.float =
         soundCategory === drumpadsOne ? "left" : "right";
-        switchButtontwo[1].style.backgroundColor =
+      switchButtontwo[1].style.backgroundColor =
         soundCategory === drumpadsOne ? " #ff3300" : "#cc9900";
     }
   }
@@ -171,11 +169,7 @@ function App() {
       if (audio) {
         let parentElement = audio.parentNode.id;
         setDisplay(parentElement);
-        setTimeout(() => {
-          setDisplay(
-            soundCategory === drumpadsOne ? "ON HEATER KIT" : "ON SMOOTH KIT"
-          );
-        }, 600);
+
         audio.volume = soundVolume;
         audio.play();
       }
@@ -187,33 +181,30 @@ function App() {
       setPowerOn(true);
       setDisplay(
         soundCategory === drumpadsOne ? "ON HEATER KIT" : "ON SMOOTH KIT"
-      )
+      );
       switchButtonOne[0].style.float = "right";
-       switchButtonOne[0].style.backgroundColor = "#cc9900";;
+      switchButtonOne[0].style.backgroundColor = "#cc9900";
     } else {
       setPowerOn(false);
       setDisplay("");
-    
-    
-       switchButtonOne[0].style.float = "left"
-       switchButtonOne[0].style.backgroundColor = " #a6a6a6"
-      }
-       
+
+      switchButtonOne[0].style.float = "left";
+      switchButtonOne[0].style.backgroundColor = " #a6a6a6";
+    }
   };
 
   return (
     <div id="drum-machine">
       <div>
-      <DrumPadKeys soundCategoryArray={soundCategory} playSound={playSound} />
-     </div>
-     <div>      
-      <Power onOn={handleOnclick} />
-      <div id="display">{display}</div>
-      <SoundBotton onKitClick={handleKitClick} />
-      <Slider onVolumeChange={handleOnchange} volumeValue={soundVolume} />
+        <DrumPadKeys soundCategoryArray={soundCategory} playSound={playSound} />
+      </div>
+      <div>
+        <Power onOn={handleOnclick} />
+        <div id="display">{display}</div>
+        <SoundBotton onKitClick={handleKitClick} />
+        <Slider onVolumeChange={handleOnchange} volumeValue={soundVolume} />
+      </div>
     </div>
-    </div>
-
   );
 }
 

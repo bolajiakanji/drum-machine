@@ -149,6 +149,7 @@ function App() {
   function handleKitClick() {
     if (powerOn) {
       let switchButtontwo = document.getElementsByClassName("switchButton");
+      let switchTwo = document.getElementsByClassName("switch");
       if (soundCategory === drumpadsOne) {
         setDisplay("ON SMOOTH KIT");
         setSoundCategory(drumpadsTwo);
@@ -158,7 +159,7 @@ function App() {
       }
       switchButtontwo[1].style.float =
         soundCategory === drumpadsOne ? "left" : "right";
-      switchButtontwo[1].style.backgroundColor =
+      switchTwo[1].style.backgroundColor =
         soundCategory === drumpadsOne ? " #ff3300" : "#cc9900";
     }
   }
@@ -177,19 +178,20 @@ function App() {
   }
   const handleOnclick = function () {
     let switchButtonOne = document.getElementsByClassName("switchButton");
+    let switchOne = document.getElementsByClassName("switch");
     if (!powerOn) {
       setPowerOn(true);
       setDisplay(
         soundCategory === drumpadsOne ? "ON HEATER KIT" : "ON SMOOTH KIT"
       );
       switchButtonOne[0].style.float = "right";
-      switchButtonOne[0].style.backgroundColor = "#cc9900";
+      switchOne[0].style.backgroundColor = "#cc9900";
     } else {
       setPowerOn(false);
       setDisplay("");
 
       switchButtonOne[0].style.float = "left";
-      switchButtonOne[0].style.backgroundColor = " #a6a6a6";
+      switchOne[0].style.backgroundColor = " #a6a6a6";
     }
   };
 

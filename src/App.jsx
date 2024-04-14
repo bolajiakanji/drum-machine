@@ -201,10 +201,14 @@ function App() {
         <DrumPadKeys soundCategoryArray={soundCategory} playSound={playSound} />
       </div>
       <div>
-        <Power onOn={handleOnclick} />
+        <Power onOn={handleOnclick} powerSwitch={powerOn} />
         <div id="display">{display}</div>
-        <SoundBotton onKitClick={handleKitClick} />
+
         <Slider onVolumeChange={handleOnchange} volumeValue={soundVolume} />
+        <SoundBotton
+          onKitClick={handleKitClick}
+          sound_category={soundCategory}
+        />
       </div>
     </div>
   );
@@ -238,18 +242,40 @@ function DrumPadKeys({ soundCategoryArray, playSound }) {
   );
 }
 
-function Power({ onOn }) {
+function Power({ onOn, powerSwitch }) {
   return (
     <>
+      <div style={{ color: "white", fontWeight: "bolder" }}>
+        power :{" "}
+        <span
+          style={{
+            color: powerSwitch ? "#cc9900" : "#a6a6a6",
+            fontWeight: "bolder",
+          }}
+        >
+          {powerSwitch ? "ON" : "OFF"}
+        </span>{" "}
+      </div>
       <div className="switch" onClick={onOn}>
         <div className="switchButton"></div>
       </div>
     </>
   );
 }
-function SoundBotton({ onKitClick }) {
+function SoundBotton({ onKitClick, sound_category }) {
   return (
     <>
+      <div style={{ color: "white", fontWeight: "bolder" }}>
+        Kit :{" "}
+        <span
+          style={{
+            color: sound_category === drumpadsOne ? "#cc9900" : "#ff3300",
+            fontWeight: "bolder",
+          }}
+        >
+          {sound_category === drumpadsOne ? "HEATER KIT" : "SMOOTH KIT"}
+        </span>{" "}
+      </div>
       <div className="switch" onClick={onKitClick}>
         <div className="switchButton"></div>
       </div>

@@ -22,16 +22,16 @@ body {
   align-items: center;
   justify-content: center;
 
-  gap: 60px;
+  gap: 40px;
   background-color: #666666;
   margin-left: 2px;
   margin-right: 2px;
 
-  margin: 32vh auto;
+  margin: 29vh auto;
   paddin: 10px;
 
   max-width: 100%;
-  width: 500px;
+  width: 400px;
   border: 3px solid #cc9900;
   border-radius: 5px;
  
@@ -81,7 +81,7 @@ body {
 .switch {
   width: 36px;
   height: 24px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-top: 20px;
   bordr: 1px solid #d9d9d9;
   padding: 4px;
@@ -132,6 +132,8 @@ border-radius: 50%;
   @media only screen and (max-width: 540px) {
     #drum-machine {
       flex-direction: column;
+      gap: 30px;
+      width: 260px;
 
     }}
 

@@ -196,7 +196,11 @@ function App() {
   };
 
   return (
+    <div id="container">
+      <p id="fcc">FCC</p>
+  
     <div id="drum-machine">
+      
       <div>
         <DrumPadKeys soundCategoryArray={soundCategory} playSound={playSound} />
       </div>
@@ -210,6 +214,9 @@ function App() {
           sound_category={soundCategory}
         />
       </div>
+      
+    </div>
+    <p id="creator">Powered by Dev Bolaji</p>
     </div>
   );
 }
@@ -244,7 +251,7 @@ function DrumPadKeys({ soundCategoryArray, playSound }) {
 
 function Power({ onOn, powerSwitch }) {
   return (
-    <>
+    <div className="switchContainer">
       <div style={{ color: "white", fontWeight: "bolder" }}>
         power :{" "}
         <span
@@ -259,13 +266,13 @@ function Power({ onOn, powerSwitch }) {
       <div className="switch" onClick={onOn}>
         <div className="switchButton"></div>
       </div>
-    </>
+    </div>
   );
 }
 function SoundBotton({ onKitClick, sound_category }) {
   return (
-    <>
-      <div style={{ color: "white", fontWeight: "bolder" }}>
+    <div className="switchContainer">
+      <div style={{ color: "white", fontWeight: "bolder" }} className="se"> 
         Kit :{" "}
         <span
           style={{
@@ -279,7 +286,7 @@ function SoundBotton({ onKitClick, sound_category }) {
       <div className="switch" onClick={onKitClick}>
         <div className="switchButton"></div>
       </div>
-    </>
+    </div>
   );
 }
 

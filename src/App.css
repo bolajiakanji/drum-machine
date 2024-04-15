@@ -16,24 +16,46 @@
 body {
   font-family: sans-serif;
 }
+#container {
+  background-color: #666666;
+  margin: 20vh auto;
+  border: 3px solid #cc9900;
+  width: 500px;
+  padding-top: 5px;
+  
+
+
+}
+
+#fcc {
+  display: flex;
+  justify-content: flex-end;
+  flat: right;
+  color: white;
+  font-style: italic;
+  font-weight: bold;
+  font-size: larger;
+  padding-right: 30px;
+  margin-bottom: 40px;
+  font-family: 'Courier New', Courier, monospace;
+}
 
 #drum-machine {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 40px;
-  background-color: #666666;
+  gap: 60px;
+  
   margin-left: 2px;
   margin-right: 2px;
 
-  margin: 29vh auto;
+  
   paddin: 10px;
 
   max-width: 100%;
-  width: 400px;
-  border: 3px solid #cc9900;
-  border-radius: 5px;
+  
+    border-radius: 5px;
  
 }
 
@@ -47,7 +69,7 @@ body {
 }
 
 .drum-pad {
-  width: 50px;
+  width: 70px;
   height: 50px;
   border: ;
   background-color: #cc9900;
@@ -66,7 +88,8 @@ body {
   height: 50px;
   width: 140px;
   background-color: white;
-  margin-top: 5px;
+  margin-top: 18px;
+  margin-bottom: 8px;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -78,17 +101,32 @@ body {
   
   font-weight: bold;
 }
+
+.switchContainer {
+  displa: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+}
+.se {
+  text-algn: center;
+  disply: flex;
+  justify-content: center;
+}
 .switch {
   width: 36px;
   height: 24px;
   border-radius: 15px;
-  margin-top: 20px;
+  margn-top: 20px;
   bordr: 1px solid #d9d9d9;
   padding: 4px;
   background-color: #cc9900;
   cursor: pointer;
   transition: .4s;
   -webkit-transition: .4s;
+  margin: 0 auto;
+  -ms-layout-grid-char: 0cqmax;
 }
 .switchButton {
   height: 16px;
@@ -111,6 +149,7 @@ border-radius: 50px;
 transition: .2s;
   
   background-color: #cc9900;
+  margin-bottom: 18px;
   
 }
 
@@ -129,13 +168,30 @@ border-radius: 50%;
   background-color: white;
   }
   
+  #creator {
+    text-align: center;
+    color: white;
+    font-style: italic;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-sie: 15px;
+
+  }
+  
   @media only screen and (max-width: 540px) {
     #drum-machine {
       flex-direction: column;
-      gap: 30px;
-      width: 260px;
+      gap: 60px;
+      widt: 260px;
 
-    }}
+    }
+    #container {
+      width: 100%;
+    }
+  
+  }
 
     
   
